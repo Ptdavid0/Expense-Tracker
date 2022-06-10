@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import { mockExpensedata } from "./mock";
+import dayjs from "dayjs";
 
 export const ExpanceContext = createContext({
   allExpences: [],
@@ -7,6 +8,8 @@ export const ExpanceContext = createContext({
   deleteExpance: (id) => {},
   editExpance: (id, expanceUpdated) => {},
   getRecentTotalAmount: () => {},
+  getTotalAmount: () => {},
+  getRecentExpenses: () => {},
 });
 
 export const ExpanceProvider = ({ children }) => {
@@ -27,8 +30,20 @@ export const ExpanceProvider = ({ children }) => {
       )
     );
   };
-
   const getRecentTotalAmount = () => {
+    return getRecentExpenses().reduce(
+      (acc, expance) => acc + expance.amount,
+      0
+    );
+  };
+
+  const getRecentExpenses = () => {
+    return allExpences.filter((expance) => {
+      return dayjs(expance.date).diff(dayjs(Date()), "days") >= -7;
+    });
+  };
+
+  const getTotalAmount = () => {
     const getRecentTotalAmount = allExpences.reduce(
       (acc, expance) => acc + expance.amount,
       0
@@ -42,6 +57,8 @@ export const ExpanceProvider = ({ children }) => {
     deleteExpance,
     editExpance,
     getRecentTotalAmount,
+    getTotalAmount,
+    getRecentExpenses,
   };
 
   return (

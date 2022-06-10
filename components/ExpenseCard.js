@@ -10,7 +10,7 @@ const ExpenseCard = ({ expense }) => {
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{expense.description}</Text>
-        <Text style={styles.subtitle}>{expense.date.toLocaleDateString()}</Text>
+        <Text style={styles.subtitle}>{expense.date}</Text>
       </View>
       <View>
         <Text style={styles.amount}>- $ {expense.amount.toFixed(0)}</Text>

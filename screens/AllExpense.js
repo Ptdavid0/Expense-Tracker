@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import ExpenseList from "../components/ExpenseList";
 import SumOfExpenses from "../components/SumOfExpenses";
+import { ExpanceContext } from "../store/expanceContext";
 
 const AllExpense = () => {
+  const { allExpences, getTotalAmount } = useContext(ExpanceContext);
+
   return (
     <View style={styles.container}>
       <View style={styles.sumContainer}>
-        <SumOfExpenses />
+        <SumOfExpenses amount={getTotalAmount()} title={"Total Spent"} />
       </View>
       <View style={styles.listContainer}>
-        <ExpenseList />
+        <ExpenseList expenseData={allExpences} />
       </View>
     </View>
   );
@@ -22,11 +25,9 @@ const styles = StyleSheet.create({
   },
   sumContainer: {
     flex: 1,
-    backgroundColor: "red",
   },
   listContainer: {
     flex: 2,
-    backgroundColor: "green",
   },
 });
 
