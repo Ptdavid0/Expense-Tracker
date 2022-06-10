@@ -2,7 +2,7 @@ export let mockExpensedata = [
   {
     id: 1,
     description: "Test 1",
-    amount: 100.1,
+    amount: 100.55,
     date: new Date(),
   },
   {

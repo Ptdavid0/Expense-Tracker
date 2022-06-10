@@ -1,8 +1,8 @@
 import React, { createContext } from "react";
 import { mockExpensedata } from "./mock";
 
-const ExpanceContext = createContext({
-  allExpences: [...mockExpensedata],
+export const ExpanceContext = createContext({
+  allExpences: [],
   addExpance: (expance) => {},
   deleteExpance: (id) => {},
   editExpance: (id, expanceUpdated) => {},
@@ -10,7 +10,7 @@ const ExpanceContext = createContext({
 });
 
 export const ExpanceProvider = ({ children }) => {
-  const [allExpences, setAllExpences] = React.useState([]);
+  const [allExpences, setAllExpences] = React.useState([...mockExpensedata]);
 
   const addExpance = (expance) => {
     setAllExpences([...allExpences, expance]);
@@ -29,7 +29,11 @@ export const ExpanceProvider = ({ children }) => {
   };
 
   const getRecentTotalAmount = () => {
-    return allExpences.reduce((acc, curr) => acc + curr.amount, 0);
+    const getRecentTotalAmount = allExpences.reduce(
+      (acc, expance) => acc + expance.amount,
+      0
+    );
+    return getRecentTotalAmount;
   };
 
   const value = {
