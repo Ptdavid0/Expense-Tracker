@@ -6,6 +6,7 @@ import AllExpense from "./screens/AllExpense";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { ExpanceProvider } from "./store/expanceContext";
+import AddButtonHeader from "./components/AddButtonHeader";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,6 +28,7 @@ export default function App() {
                 shadowColor: "transparent",
               },
               headerTintColor: "#ffffff",
+              headerRight: () => <AddButtonHeader />,
             }}
           >
             <Tab.Screen
@@ -56,7 +58,7 @@ export default function App() {
           </Tab.Navigator>
         </NavigationContainer>
       </ExpanceProvider>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </>
   );
 }

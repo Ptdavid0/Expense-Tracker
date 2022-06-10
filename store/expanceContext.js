@@ -10,10 +10,13 @@ export const ExpanceContext = createContext({
   getRecentTotalAmount: () => {},
   getTotalAmount: () => {},
   getRecentExpenses: () => {},
+  modalVisible: false,
+  setModalVisibility: (modalVisible) => {},
 });
 
 export const ExpanceProvider = ({ children }) => {
   const [allExpenses, setAllExpenses] = React.useState([...mockExpensedata]);
+  const [modalVisible, setModalVisibility] = React.useState(false);
 
   const addExpance = (expance) => {
     setAllExpenses([...allExpenses, expance]);
@@ -59,6 +62,8 @@ export const ExpanceProvider = ({ children }) => {
     getRecentTotalAmount,
     getTotalAmount,
     getRecentExpenses,
+    modalVisible,
+    setModalVisibility,
   };
 
   return (

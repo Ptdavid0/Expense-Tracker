@@ -1,0 +1,5 @@
+- Order items by date
+- Add categories
+- Improve UI
+- Improve colors and constants
+- Edit and delete modal
