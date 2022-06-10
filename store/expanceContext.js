@@ -3,7 +3,7 @@ import { mockExpensedata } from "./mock";
 import dayjs from "dayjs";
 
 export const ExpanceContext = createContext({
-  allExpences: [],
+  allExpenses: [],
   addExpance: (expance) => {},
   deleteExpance: (id) => {},
   editExpance: (id, expanceUpdated) => {},
@@ -13,19 +13,19 @@ export const ExpanceContext = createContext({
 });
 
 export const ExpanceProvider = ({ children }) => {
-  const [allExpences, setAllExpences] = React.useState([...mockExpensedata]);
+  const [allExpenses, setAllExpenses] = React.useState([...mockExpensedata]);
 
   const addExpance = (expance) => {
-    setAllExpences([...allExpences, expance]);
+    setAllExpenses([...allExpenses, expance]);
   };
 
   const deleteExpance = (id) => {
-    setAllExpences(allExpences.filter((expance) => expance.id !== id));
+    setAllExpenses(allExpenses.filter((expance) => expance.id !== id));
   };
 
   const editExpance = (id, expanceUpdated) => {
-    setAllExpences(
-      allExpences.map((expance) =>
+    setAllExpenses(
+      allExpenses.map((expance) =>
         expance.id === id ? { ...expance, ...expanceUpdated } : expance
       )
     );
@@ -38,13 +38,13 @@ export const ExpanceProvider = ({ children }) => {
   };
 
   const getRecentExpenses = () => {
-    return allExpences.filter((expance) => {
+    return allExpenses.filter((expance) => {
       return dayjs(expance.date).diff(dayjs(Date()), "days") >= -7;
     });
   };
 
   const getTotalAmount = () => {
-    const getRecentTotalAmount = allExpences.reduce(
+    const getRecentTotalAmount = allExpenses.reduce(
       (acc, expance) => acc + expance.amount,
       0
     );
@@ -52,7 +52,7 @@ export const ExpanceProvider = ({ children }) => {
   };
 
   const value = {
-    allExpences,
+    allExpenses,
     addExpance,
     deleteExpance,
     editExpance,

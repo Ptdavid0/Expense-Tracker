@@ -57,6 +57,6 @@ export let mockExpensedata = [
     id: 10,
     description: "Test 10",
     amount: 4,
-    date: new Date(),
+    date: "2022-06-01",
   },
 ];

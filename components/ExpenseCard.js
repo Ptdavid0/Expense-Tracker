@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import dayjs from "dayjs";
 
 const ExpenseCard = ({ expense }) => {
   return (
@@ -10,7 +11,9 @@ const ExpenseCard = ({ expense }) => {
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{expense.description}</Text>
-        <Text style={styles.subtitle}>{expense.date}</Text>
+        <Text style={styles.subtitle}>
+          {dayjs(expense.date).format("YYYY-MM-DD")}
+        </Text>
       </View>
       <View>
         <Text style={styles.amount}>- $ {expense.amount.toFixed(0)}</Text>

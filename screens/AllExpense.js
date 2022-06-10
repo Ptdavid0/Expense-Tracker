@@ -5,7 +5,7 @@ import SumOfExpenses from "../components/SumOfExpenses";
 import { ExpanceContext } from "../store/expanceContext";
 
 const AllExpense = () => {
-  const { allExpences, getTotalAmount } = useContext(ExpanceContext);
+  const { allExpenses, getTotalAmount } = useContext(ExpanceContext);
 
   return (
     <View style={styles.container}>
@@ -13,7 +13,7 @@ const AllExpense = () => {
         <SumOfExpenses amount={getTotalAmount()} title={"Total Spent"} />
       </View>
       <View style={styles.listContainer}>
-        <ExpenseList expenseData={allExpences} />
+        <ExpenseList expenseData={allExpenses} />
       </View>
     </View>
   );
